@@ -5,6 +5,18 @@
 <title>Leo</title>
 <link href="ccs/index.css" rel="stylesheet" />
 <link href="ccs/base.css" rel="stylesheet" />
+<script src="js/jquery-1.7.2.js"></script>
+<script>
+$(function(){
+	$('.nav_box li').click(function(){
+		$('.nav_box li').removeClass('active');
+		$(this).addClass('active');
+		$('show_box li').hide();
+		$('.show_box li').eq($(this).index()).show();
+	})
+})
+
+</script>
 </head>
 
 <body>
@@ -27,11 +39,11 @@
 			<span class="hot_word">一腔热血的激情 · 一夜失眠的创意 · 一个像素的执着</span><br />
 			<a class="email_me" href="mailto:605564739@qq.com">one_px@163.com</a>	
 		</div>
-		
 		<ul class="show_box">
 			<li><a href="javascript:;">1</a></li>
 			<li><a href="javascript:;">2</a></li>
 			<li><a href="javascript:;">3</a></li>
+			<li><a href="javascript:;">4</a></li>
 		</ul>
 	</div>
 </div>

@@ -9,13 +9,16 @@ body{ width:100%; height:100%;}
 /*主页左部按钮切换*/
 .mind_left .nav_box{ width:100%;}
 .nav_box li{ height:60px; line-height:60px; padding-left:20px; font-family:'微软雅黑'; font-size:20px; color:#FFF; cursor:pointer;}
-/*.nav_box li.active{background:#399;}*/
-.nav_box li:hover{background:#399;}
+.nav_box li.active{background:#399;}
+
 
 /*主页右部显示*/
 .mind_right{ height:100%; margin-left:200px; position:relative;}
 .mind_right .w_word { color:#FFF; font-family:'微软雅黑'; font-size:50px; text-align:center; position:absolute; lrft:0; bottom:100px; width:100%;}
 .mind_right .w_word .hot_word{ color:#3C9; font-family:'微软雅黑'; font-size:30px;}
 .mind_right .w_word .email_me{ color:#ffc; font-family:'微软雅黑'; font-size:16px;}
-.show_box{ display:none;}
+
+.show_box{ width:100%; height:100%; border:1px solid #CCC}
+.show_box li{ width:100%; height:100%; display:none;}
+
 
