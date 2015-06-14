@@ -7,43 +7,221 @@
 <link href="ccs/base.css" rel="stylesheet" />
 <script src="js/jquery-1.7.2.js"></script>
 <script>
-$(function(){
-	$('.nav_box li').click(function(){
-		$('.nav_box li').removeClass('active');
-		$(this).addClass('active');
-		$('show_box li').hide();
-		$('.show_box li').eq($(this).index()).show();
+window.onload =function(){
+	var oOl =document.getElementById('js_tabbtn');
+	var oUl =document.getElementById('js_tabbox');
+	var aBtn=oOl.getElementsByTagName('li');
+	var aBox=oUl.getElementsByTagName('li');
+	var oHomePage =document.getElementById('js_index_word');
+	iNow =-1;
+	(function(){
+		var indexWord ="Welcome To Leo's Home";
+		for(i=0;i<indexWord.length;i++){
+			var oLeo =document.createElement('span');
+			oLeo.innerHTML =indexWord.charAt(i);
+			oHomePage.appendChild(oLeo);
+		}
+		var aLeo =oHomePage.children;
+		var timer =null;
+		var j=0;
+		timer =setInterval(function(){
+			move(aLeo[j],{opacity:1})
+			j++;
+			if(i ==aLeo.length){
+				clearInterval(timer);
+			}
+		},100)
+	})()
+	
+	//选项卡；
+	for(var i=0;i<aBtn.length;i++){
+		(function(index){
+			aBtn[i].onclick =function(){
+				iNow=index;
+				tab();
+			};
+		})(i)
+	};
+	//封装选项卡
+	function tab(){
+		for(var i=0;i<aBtn.length;i++){
+			aBtn[i].className ='';
+			move(aBox[i],{opacity:0});
+		}
+		oHomePage.style.display ='none';
+		aBtn[iNow%aBtn.length].className ='active';
+		move(aBox[iNow%aBtn.length],{opacity:0.8},{duration:1000})
+	};
+	//下拉切换
+	function next(){
+		iNow++;
+		tab();
+	};
+	//上拉切换
+	function prev(){
+		iNow--;
+		if(iNow<0){
+			iNow=aBtn.length-1
+		}
+		tab();
+	};
+	
+	//滚轮切换
+	addWheel(document,function(bDOwn){		
+		if(bDOwn){
+			next();
+		}else{
+			prev();
+		}
 	})
-})
+	//点击logo
+};
 
+//封装滚轮事件；bDOWN
+function addWheel(obj,fn){
+	function fnWheel(ev){
+		var oEvent = ev||event;
+		var bDown = true;//true  向下   false   向上
+		if(oEvent.wheelDelta){
+			//wheelDelta
+			if(oEvent.wheelDelta>0){
+				bDown=false;
+			}else{
+				bDown=true;
+			}
+		}else{
+			//detail
+			if(oEvent.detail<0){
+				bDown=false;
+			}else{
+				bDown=true;
+			}
+		}
+		fn(bDown);
+		oEvent.preventDefault&&oEvent.preventDefault();
+		return false;
+	}
+	if(window.navigator.userAgent.indexOf('Firefox')!=-1){
+		//DOMMouseScroll
+		obj.addEventListener('DOMMouseScroll',fnWheel,false);
+	}else{
+		//onmousewheel
+		obj.onmousewheel=fnWheel;
+	}
+}
+
+//封装运动框架
+function move(obj,json,options){
+	options=options || {};
+	options.duration=options.duration || 300;
+	options.easing=options.easing || 'ease-out';
+	
+	var count=Math.ceil(options.duration/30);
+	var start={};
+	var dis={};
+	for(var name in json){
+		start[name]=parseFloat(getStyle(obj,name));
+		
+		if(isNaN(start[name])){
+			switch(name){
+				case 'left':
+					start[name]=obj.offsetLeft;
+					break;
+				case 'top':
+					start[name]=obj.offsetTop;
+					break;
+				case 'width':
+					start[name]=obj.offsetWidth;
+					break;
+				case 'height':
+					start[name]=obj.offsetHeight;
+					break;
+				case 'opacity':
+					start[name]=1;
+					break;
+				case 'fontSize':
+					start[name]=12;
+					break;
+				//.....
+			}
+		}
+		
+		dis[name]=json[name]-start[name];
+	}
+	
+	var n=0;
+	
+	clearInterval(obj.timer);
+	obj.timer=setInterval(function(){
+		n++;
+		
+		for(var name in json){
+			
+			switch(options.easing){
+				case 'linear':
+					var a=n/count;
+					var cur=start[name]+dis[name]*a;
+					break;
+				case 'ease-in':
+					var a=n/count;
+					var cur=start[name]+dis[name]*Math.pow(a,3);
+					break;
+				case 'ease-out':
+					var a=1-n/count;
+					var cur=start[name]+dis[name]*(1-Math.pow(a,3));
+					break;
+			}
+			
+			if(name=='opacity'){
+				obj.style.opacity=cur;
+				obj.style.filter='alpha(opacity:'+cur*100+')';
+			}else{
+				obj.style[name]=cur+'px';
+			}
+		}
+		
+		if(n==count){
+			clearInterval(obj.timer);
+			options.complete && options.complete();
+		}
+	},30);
+}
+
+//获取非行间样式
+function getStyle(obj,name){
+	return (obj.currentStyle || getComputedStyle(obj,false))[name];
+}
 </script>
-</head>
+</head>  
 
 <body>
 <div class="mind_body">
 	<!--主页左部按钮切换-->
 	<div class="mind_left">
-		<h1><a href="index.html">Leo个人站</a></h1>
 		<!--主页左部导航-->
-		<ol class="nav_box">
-			<li class="about_me active">About_me</li>
-			<li class="skill">Skill</li>
-			<li class="project">Project</li>
-			<li class="contact">Contact</li>
+		<ol class="nav_box" id="js_tabbtn">
+			<li>About_me</li>
+			<li>Skill</li>
+			<li>Project</li>
+			<li>Contact</li>
 		</ol>
 	</div>
 	<!--主页右部显示-->
 	<div class="mind_right">
-		<div class="w_word">
-			Enjoy,Imagine,Create<br />
-			<span class="hot_word">一腔热血的激情 · 一夜失眠的创意 · 一个像素的执着</span><br />
-			<a class="email_me" href="mailto:605564739@qq.com">one_px@163.com</a>	
-		</div>
-		<ul class="show_box">
-			<li><a href="javascript:;">1</a></li>
-			<li><a href="javascript:;">2</a></li>
-			<li><a href="javascript:;">3</a></li>
-			<li><a href="javascript:;">4</a></li>
+		<div id="js_index_word"> </div>
+		<ul class="show_box" id="js_tabbox">
+			<li class="about_me">1
+				<div class="w_word">
+					<h1><a href="index.html">Leo个人站</a></h1>
+					Enjoy,Imagine,Create<br />
+					<span class="hot_word">前端攻城狮--刘洋</span><br />
+					<span class="hot_word">一腔热血的激情 · 一夜失眠的创意 · 一个像素的执着</span><br />
+					<a class="email_me" href="mailto:605564739@qq.com">one_px@163.com</a>	
+				</div>
+			</li>
+			<li class="skill">2</li>
+			<li class="project">3</li>
+			<li class="contact">4</li>
 		</ul>
 	</div>
 </div>
