@@ -14,7 +14,8 @@ window.onload =function(){
 	var aBox=oUl.getElementsByTagName('li');
 	var oHomePage =document.getElementById('js_index_word');
 	iNow =-1;
-	(function(){
+	//首页欢迎语
+	;(function(){	
 		var indexWord ="Welcome To Leo's Home";
 		for(i=0;i<indexWord.length;i++){
 			var oLeo =document.createElement('span');
@@ -27,11 +28,16 @@ window.onload =function(){
 		timer =setInterval(function(){
 			move(aLeo[j],{opacity:1})
 			j++;
-			if(i ==aLeo.length){
+			if(j == aLeo.length){
 				clearInterval(timer);
+				setTimeout(function(){
+					oHomePage.style.display ='none';
+					aBtn[0].className ='active';
+					move(aBox[0],{opacity:0.8},{duration:1000})
+				},2000)
 			}
 		},100)
-	})()
+	})();	
 	
 	//选项卡；
 	for(var i=0;i<aBtn.length;i++){
@@ -205,6 +211,7 @@ function getStyle(obj,name){
 			<li>Project</li>
 			<li>Contact</li>
 		</ol>
+		<span></span>
 	</div>
 	<!--主页右部显示-->
 	<div class="mind_right">
