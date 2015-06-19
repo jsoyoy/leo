@@ -2,33 +2,17 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Leo</title>
-<link href="ccs/index.css" rel="stylesheet" />
-<script src="js/index.js"></script>
-<link href="ccs/base.css" rel="stylesheet" />
-
-
-</head>  
+<title>无标题文档</title>
+<style>
+</style>
+</head>
 
 <body>
-<div class="mind_body" id="mind_box">
-	<!--主页左部按钮切换-->
-	<div class="mind_left">
-		<!--主页左部导航-->
-		<ol class="nav_box" id="js_tabbtn">
-			<li>Home</li>
-			<li>Skill & Tool</li>
-			<li>Project</li>
-			<li>Contact</li>
-		</ol>  
-		<span></span>
-	</div>
-	<!--主页右部显示-->
 	<div class="mind_right">
-		<div id="js_index_word"><p style="z-index:1">点击进入</p></div>
+		<div id="js_index_word"> </div>
 		<ul class="show_box" id="js_tabbox">
 			<!--about me-->
-			<li class="about_me css_opa0">
+			<li class="about_me css_opa0">1
 				<div class="w_word">
 					<h1><a href="index.html">Leo个人站</a></h1>
 					Enjoy,Imagine,Create<br />
@@ -38,10 +22,10 @@
 				</div>
 			</li>
 			<!--skill-->
-			<li class="skill css_opa0 clearfix">
-				<div class="skill_box fl">	
-					<h3>技能</h3>
-					<ul id="js_bar">
+			<li class="skill css_opa0" id="js_scroll_box">
+					<div class="skill_box">	
+						<h3>技能</h3>
+						<ul>
 						<li>
 							<img src="img/skill1.gif" class="skill_bg">HTML:<div class="bar_box"><span class="bar"></span></div>
 						</li>
@@ -59,12 +43,34 @@
 							<img src="img/skill5.gif" class="skill_bg">Ajax:<div class="bar_box"><span class="bar"></span></div>
 						</li>
 					</ul>
-				</div>
+						<span class="btn_down" id="js_down">↓</span>
+					</div>
+					<div class="tool_box">
+						<span class="btn_up" id="js_up">↑</span>
+						<h3>装备</h3>
+						<ul>
+						<li>
+							<img src="img/skill1.gif" class="skill_bg">HTML:<div class="bar_box"><span class="bar"></span></div>
+						</li>
+						<li>
+							<img src="img/skill2.gif" class="skill_bg">CCS:<div class="bar_box"><span class="bar"></span></div>
+						</li>					
+						<li>
+							<img src="img/skill3.gif" class="skill_bg">JS:<div class="bar_box"><span class="bar"></span></div>
+						</li>
+						<li>
+							<img src="img/skill4.gif" class="skill_bg">JQ:<div class="bar_box"><span class="bar"></span></div>
+						</li>	
+	
+						<li>
+							<img src="img/skill5.gif" class="skill_bg">Ajax:<div class="bar_box"><span class="bar"></span></div>
+						</li>
+					</ul>
+					</div>
 			</li>
 			<li class="project css_opa0">3</li>
 			<li class="contact css_opa0">4</li>
 		</ul>
 	</div>
-</div>
 </body>
 </html>

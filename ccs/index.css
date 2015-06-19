@@ -1,5 +1,5 @@
 html{ width:100%; height:100%;}
-body{ width:100%; height:100%;}
+body{ width:100%; height:100%; color:#FFF; font-family:'微软雅黑'}
 .mind_body{ width:100%; height:100%; position:relative; background:url(../img/front-background.jpg) no-repeat center 0; background-size:100% 100%;}
 
 /*主页左部按钮*/
@@ -14,14 +14,28 @@ body{ width:100%; height:100%;}
 /*主页右部显示*/
 .mind_right{ position:relative; height:100%; margin-left:200px;}
 .mind_right .show_box{ width:100%; height:100%;  position:absolute; left:0; top:0;}
-.mind_right .show_box li{ width:100%; height:100%; position:absolute; left:0; top:0; opacity:0; filter:alpha(opacity:0); background:#000;}
+.mind_right .show_box .css_opa0{ width:100%; height:100%; opacity:0; filter:alpha(opacity:0); background:#000; position:absolute; top:0; left:0;}
 
 /*欢迎语*/
 #js_index_word{ color:#FFF; font-family:'微软雅黑'; font-size:50px; text-align:center; position:absolute; left:0; top:50%; width:100%; } 
+#js_index_word p{ position:absolute; top:0; left:0; background:#F33; cursor:pointer;}
 #js_index_word span{ width:80px; color:#399; opacity:0; filter:alpha(opacity:0); }
+
+
 /*about me*/
 .w_word { color:#FFF; font-family:'微软雅黑'; font-size:50px; text-align:center; position:absolute; left:0; top:20%; width:100%;}
 h1{ width:120px; height:120px; border-radius:50%; background:url(../img/log.jpg) no-repeat center 0; margin:50px auto; border:4px solid #399;}
 h1 a{ width:100%; height:100%; display:block; text-indent:-999999em;}
 .w_word .hot_word{ color:#3C9; font-family:'微软雅黑'; font-size:30px;}
 .w_word .email_me{ color:#ffc; font-family:'微软雅黑'; font-size:16px;}
+
+/*skill*/
+.skill_box{width:100%; height:100%; position:relative;}
+
+.skill_box h3{ font-size:50px; height:30px; line-height:30px; text-align:center; padding-top:50px;}
+.skill ul{ margin:0 auto;}
+.skill li{ height:64px; padding-left:80px; font-size:36px; line-height:64px; margin:30px 0 20px 100px; position:relative;}
+.skill .skill_bg{ width:64px; height:64px; position:absolute; top:0; left:0;}
+.skill .bar_box{ width:500px; height:34px; border-radius:10px; background:#FFF; position:absolute; top:15px; left:250px;}
+.skill .bar{ width:10px; height:34px; position:absolute; top:0; left:0; background:#F00; border-radius:10px;}
+
